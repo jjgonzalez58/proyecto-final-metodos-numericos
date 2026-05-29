@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proyecto Final - Métodos Numéricos. Serie de Taylor e Interpolación de Lagrange. Universidad Mariano Gálvez de Guatemala.">
+  <title>Métodos Numéricos - Proyecto Final Grupo No. 6</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/Umg.png" alt="Logo Universidad Mariano Gálvez">
+        <div>
+          Métodos Numéricos
+          <span>Proyecto Final Grupo No. 6</span>
+        </div>
+      </a>
+      <button class="hamburger" aria-expanded="false" aria-label="Menú de navegación">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li><a href="polinomio-de-interpolacion-lagrange.html" class="nav__link">Lagrange</a></li>
+          <li><a href="aproximacion-taylor.html" class="nav__link">Taylor</a></li>
+          <li><a href="conclusiones.html" class="nav__link">Conclusiones</a></li>
+          <li><a href="preguntas-frecuentes.html" class="nav__link">FAQ</a></li>
+          <li><a href="recursos-adicionales.html" class="nav__link">Recursos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">Métodos Numéricos</h1>
+      <p class="hero__subtitle">
+        Serie de Taylor &amp; Interpolación de Lagrange &mdash; Proyecto Final del curso de Métodos Numéricos,
+        Facultad de Ingeniería en Sistemas y Ciencias de la Información.
+      </p>
+      <a href="#introduccion" class="hero__cta">Conocer más</a>
+    </div>
+  </section>
+
+  <!-- ======== MAIN ======== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- 1. Nombre del proyecto -->
+      <section class="section text-center">
+        <h2 class="section__title">Proyecto Final &mdash; Métodos Numéricos</h2>
+        <p class="section__text" style="font-size:1.05rem;color:#555;max-width:800px;margin:0 auto;">
+          Serie de Taylor &amp; Interpolación de Lagrange
+        </p>
+        <p class="section__text" style="font-size:0.95rem;color:#888;margin-top:1rem;">
+          Universidad Mariano G&aacute;lvez de Guatemala &mdash; Facultad de Ingenier&iacute;a en Sistemas
+          y Ciencias de la Informaci&oacute;n<br>
+          Sede Jalapa &mdash; Curso: M&eacute;todos Num&eacute;ricos, Secci&oacute;n A &mdash;
+          Primer Semestre 2026
+        </p>
+      </section>
+
+      <!-- 2. Integrantes del grupo -->
+      <section class="section">
+        <h2 class="section__title">Integrantes del grupo</h2>
+        <div class="team-list">
+          <div class="team-member">
+            <p class="team-member__name">Job Jeremías Gonzalez y González</p>
+            <p class="team-member__id">0907-07-7500</p>
+          </div>
+          <div class="team-member">
+            <p class="team-member__name">Félix Eliab Hernández Alarcón</p>
+            <p class="team-member__id">0907-22-9244</p>
+          </div>
+          <div class="team-member">
+            <p class="team-member__name">Julio Rodolfo Vasque Ortiz</p>
+            <p class="team-member__id">0907-24-19595</p>
+          </div>
+          <div class="team-member">
+            <p class="team-member__name">Hugo Enrique Vasquez Ortiz</p>
+            <p class="team-member__id">0907-24-19574</p>
+          </div>
+          <div class="team-member">
+            <p class="team-member__name">Luis Enrique Portillo Orellana</p>
+            <p class="team-member__id">0907-22-15191</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Introducción -->
+      <section id="introduccion" class="section">
+        <h2 class="section__title">Introducción</h2>
+        <p class="section__text">
+          Los métodos numéricos representan una parte fundamental dentro del área de Ingeniería en Sistemas,
+          ya que permiten resolver problemas matemáticos complejos mediante procedimientos iterativos y
+          aproximaciones computacionales. A lo largo del curso se desarrollaron distintos temas enfocados
+          en el análisis, solución y aplicación de técnicas matemáticas utilizadas para obtener resultados
+          precisos en diferentes contextos tecnológicos y científicos.
+        </p>
+        <p class="section__text">
+          El presente proyecto tiene como finalidad reunir y presentar de forma organizada los conocimientos
+          adquiridos durante el semestre, tomando como base los métodos de Serie de Taylor e Interpolación
+          de Lagrange, los cuales fueron trabajados mediante ejercicios, ejemplos y programas aplicados.
+          Además, se busca demostrar cómo estos métodos pueden ser adaptados a herramientas tecnológicas
+          para facilitar su comprensión y aplicación.
+        </p>
+        <p class="section__text">
+          A través de esta página, se pretende ofrecer un recurso educativo que permita a futuros estudiantes
+          comprender de una manera más clara e interactiva los temas abordados en el curso, fortaleciendo
+          así el aprendizaje colaborativo y el uso de nuevas tecnologías como apoyo académico.
+        </p>
+      </section>
+
+      <!-- 4. Propósito de la página -->
+      <section class="section">
+        <h2 class="section__title">Propósito de la página</h2>
+        <p class="section__text">
+          El propósito principal de esta página es brindar un espacio educativo donde se expliquen de manera
+          clara y accesible los métodos numéricos trabajados durante el curso, integrando teoría, ejemplos
+          prácticos, programas funcionales y recursos de apoyo que faciliten el aprendizaje.
+        </p>
+        <p class="section__text">
+          Asimismo, se busca que cualquier estudiante o persona interesada pueda comprender el funcionamiento
+          de la Serie de Taylor y la Interpolación de Lagrange, observando sus aplicaciones, utilidad y
+          desarrollo dentro del ámbito de la Ingeniería en Sistemas.
+        </p>
+      </section>
+
+      <!-- 5. Mensaje de bienvenida -->
+      <section class="section">
+        <h2 class="section__title">Bienvenida</h2>
+        <div class="info-box">
+          <p class="info-box__text">
+            <strong>&iexcl;Bienvenido(a)!</strong> Nos complace presentarte este proyecto final del curso de
+            Métodos Numéricos, elaborado con el propósito de compartir de forma sencilla y comprensible
+            algunos de los conocimientos adquiridos durante el semestre. En este espacio encontrarás
+            información relacionada con distintos procedimientos matemáticos aplicados a la resolución
+            de problemas, así como ejemplos y herramientas desarrolladas para facilitar su entendimiento.
+            Esperamos que el contenido presentado sea de utilidad para fortalecer tus conocimientos y
+            motivarte a seguir aprendiendo sobre el amplio campo de los métodos numéricos y su importancia
+            dentro de la Ingeniería en Sistemas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Explorar métodos -->
+      <section class="section">
+        <h2 class="section__title">Explorar métodos</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card__icon">&#9878;</div>
+            <h3 class="card__title">Polinomio de Interpolación de Lagrange</h3>
+            <p class="card__text">
+              Técnica para estimar valores intermedios entre puntos de datos conocidos mediante un polinomio
+              que pasa exactamente por todos ellos.
+            </p>
+            <a href="polinomio-de-interpolacion-lagrange.html" class="hero__cta" style="margin-top:1rem;display:inline-block;padding:0.6rem 1.4rem;font-size:0.85rem;">Ver método</a>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#8734;</div>
+            <h3 class="card__title">Aproximación por Serie de Taylor</h3>
+            <p class="card__text">
+              Método de aproximación de funciones mediante la expansión en series de potencias alrededor
+              de un punto, fundamental en análisis numérico.
+            </p>
+            <a href="aproximacion-taylor.html" class="hero__cta" style="margin-top:1rem;display:inline-block;padding:0.6rem 1.4rem;font-size:0.85rem;">Ver método</a>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#10003;</div>
+            <h3 class="card__title">Conclusiones del proyecto</h3>
+            <p class="card__text">
+              Reflexiones finales sobre los aprendizajes, desafíos y la importancia de los métodos numéricos
+              en la Ingeniería en Sistemas.
+            </p>
+            <a href="conclusiones.html" class="hero__cta" style="margin-top:1rem;display:inline-block;padding:0.6rem 1.4rem;font-size:0.85rem;">Ver conclusiones</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__heading">Métodos Numéricos</h4>
+          <p class="footer__text">
+            Proyecto Final &mdash; Serie de Taylor e Interpolación de Lagrange.
+            Universidad Mariano Gálvez de Guatemala.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Enlaces</h4>
+          <div class="footer__links">
+            <a href="index.html" class="footer__link">Inicio</a>
+            <a href="polinomio-de-interpolacion-lagrange.html" class="footer__link">Interpolación de Lagrange</a>
+            <a href="aproximacion-taylor.html" class="footer__link">Serie de Taylor</a>
+            <a href="conclusiones.html" class="footer__link">Conclusiones</a>
+            <a href="preguntas-frecuentes.html" class="footer__link">Preguntas frecuentes</a>
+            <a href="recursos-adicionales.html" class="footer__link">Recursos adicionales</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Redes sociales</h4>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">F</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">T</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">L</a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">Y</a>
+          </div>
+          <p class="footer__text" style="margin-top:0.75rem;">
+            <a href="#" class="footer__link">Política de privacidad</a> &middot;
+            <a href="#" class="footer__link">Contacto</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; <span id="current-year">2026</span> Grupo No 6 Curso Métodos Numéricos UMG sede Jalapa. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

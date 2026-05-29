@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Polinomio de Interpolación de Lagrange - Explicación, procedimiento paso a paso y programación en MATLAB.">
+  <title>Polinomio de Interpolación de Lagrange | Métodos Numéricos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/Umg.png" alt="Logo Universidad Mariano Gálvez">
+        <div>
+          Métodos Numéricos
+          <span>Proyecto Final</span>
+        </div>
+      </a>
+      <button class="hamburger" aria-expanded="false" aria-label="Menú de navegación">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li><a href="polinomio-de-interpolacion-lagrange.html" class="nav__link">Lagrange</a></li>
+          <li><a href="aproximacion-taylor.html" class="nav__link">Taylor</a></li>
+          <li><a href="conclusiones.html" class="nav__link">Conclusiones</a></li>
+          <li><a href="preguntas-frecuentes.html" class="nav__link">FAQ</a></li>
+          <li><a href="recursos-adicionales.html" class="nav__link">Recursos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======== PAGE BANNER ======== -->
+  <section class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">Polinomio de Interpolación de Lagrange</h1>
+      <p class="page-banner__breadcrumb"><a href="index.html">Inicio</a> / Lagrange</p>
+    </div>
+  </section>
+
+  <!-- ======== MAIN ======== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- Introducción -->
+      <section class="section">
+        <h2 class="section__title">¿Qué es la interpolación?</h2>
+        <p class="section__text">
+          La interpolación es una técnica fundamental en los métodos numéricos que se utiliza para estimar
+          valores intermedios entre puntos de datos precisos y conocidos. A diferencia de la regresión,
+          que busca una tendencia general, la interpolación genera una curva que pasa exactamente a través
+          de todos los puntos de datos proporcionados.
+        </p>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="section">
+        <h2 class="section__title">¿Para qué sirve y dónde se aplica?</h2>
+        <p class="section__text">
+          Este método numérico es vital cuando se trabaja con información tabulada de alta precisión donde
+          no se realizaron mediciones en cada punto posible. Algunas aplicaciones comunes incluyen:
+        </p>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card__icon">&#9881;</div>
+            <h3 class="card__title">Termodinámica</h3>
+            <p class="card__text">
+              Expandir tablas de vapor para encontrar la energía interna o entalpía a una temperatura
+              específica que no figura en la tabla original.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#127959;</div>
+            <h3 class="card__title">Ingeniería Civil</h3>
+            <p class="card__text">
+              Estimar la transferencia de calor o la ubicación de la termoclina en lagos basándose en
+              profundidades medidas.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#128264;</div>
+            <h3 class="card__title">Procesamiento de Señales</h3>
+            <p class="card__text">
+              Reconstruir formas de onda a partir de muestras de datos dispersas.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#128176;</div>
+            <h3 class="card__title">Economía</h3>
+            <p class="card__text">
+              Determinar valores intermedios en tablas de interés para análisis financieros.
+            </p>
+          </div>
+        </div>
+        <p class="section__text">
+          Para calcular la interpolación dados <em>n + 1</em> puntos conocidos y asociados a datos, existe
+          un polinomio de grado <em>n</em> que pasa a través de todos los puntos, el cual es llamado
+          polinomio de interpolación, de los cuales existen dos alternativas más utilizadas: el polinomio
+          de Newton y el de Lagrange. En esta página nos centraremos en el método de Lagrange.
+        </p>
+      </section>
+
+      <!-- El Método -->
+      <section class="section">
+        <h2 class="section__title">El Polinomio de Interpolación de Lagrange</h2>
+        <p class="section__text">
+          El método de Lagrange es una reformulación del polinomio de Newton que evita el cálculo de
+          diferencias divididas. Es preferido cuando se conoce el grado del polinomio de antemano, ya
+          que su estructura es más sencilla de programar.
+        </p>
+        <div class="info-box">
+          <p class="info-box__text">
+            <strong>Lógica visual del método:</strong> Cada término del polinomio está diseñado para ser
+            igual a 1 en su punto correspondiente <em>x<sub>i</sub></em> y 0 en todos los demás puntos
+            de datos. Al sumar estos términos ponderados por sus respectivos valores de <em>y</em>, se
+            obtiene un único polinomio que pasa por todos los puntos.
+          </p>
+        </div>
+      </section>
+
+      <!-- Procedimiento -->
+      <section class="section">
+        <h2 class="section__title">Procedimiento paso a paso</h2>
+        <p class="section__text">
+          Para interpolar un valor <em>x</em> usando <em>n+1</em> puntos:
+        </p>
+        <div class="steps">
+          <div class="step">
+            <span class="step__number">1</span>
+            <div class="step__content">
+              <h3 class="step__title">Identificar los datos</h3>
+              <p class="step__text">
+                Listar los puntos conocidos: (x<sub>0</sub>, y<sub>0</sub>), (x<sub>1</sub>, y<sub>1</sub>),
+                &hellip;, (x<sub>n</sub>, y<sub>n</sub>).
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">2</span>
+            <div class="step__content">
+              <h3 class="step__title">Calcular las funciones de Lagrange (L<sub>i</sub>)</h3>
+              <p class="step__text">
+                Para cada punto <em>i</em>, se construye una fracción que utiliza todos los otros valores
+                de <em>x</em> excepto el propio <em>x<sub>i</sub></em>.
+              </p>
+              <div class="formula">
+                L<sub>i</sub>(x) = &prod;<sub>j&ne;i</sub> (x &minus; x<sub>j</sub>) / (x<sub>i</sub> &minus; x<sub>j</sub>)
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">3</span>
+            <div class="step__content">
+              <h3 class="step__title">Ponderar con los valores de <em>y</em></h3>
+              <p class="step__text">
+                Multiplicar cada función L<sub>i</sub>(x) por su valor correspondiente f(x<sub>i</sub>).
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">4</span>
+            <div class="step__content">
+              <h3 class="step__title">Sumar los resultados</h3>
+              <p class="step__text">
+                La suma de todos estos productos nos da el valor estimado f<sub>n</sub>(x).
+              </p>
+              <div class="formula">
+                f<sub>n</sub>(x) = &Sigma;<sub>i=0</sub><sup>n</sup> L<sub>i</sub>(x) &middot; f(x<sub>i</sub>)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ejemplo Manual -->
+      <section class="section">
+        <h2 class="section__title">Ejemplo manual resuelto</h2>
+        <p class="section__text">
+          Supongamos que queremos estimar el logaritmo natural de 2 (<em>x = 2</em>) usando tres puntos conocidos:
+        </p>
+        <div class="formula">
+          (x<sub>0</sub>, y<sub>0</sub>) = (1, 0) &nbsp;&nbsp;
+          (x<sub>1</sub>, y<sub>1</sub>) = (4, 1.386294) &nbsp;&nbsp;
+          (x<sub>2</sub>, y<sub>2</sub>) = (6, 1.791760)
+        </div>
+
+        <h3 class="section__subtitle">Paso 1: Calcular L<sub>0</sub>(2)</h3>
+        <div class="formula">
+          L<sub>0</sub>(2) = (2 &minus; 4)(2 &minus; 6) / (1 &minus; 4)(1 &minus; 6) = (&minus;2)(&minus;4) / (&minus;3)(&minus;5) = 8 / 15 = 0.5333
+        </div>
+
+        <h3 class="section__subtitle">Paso 2: Calcular L<sub>1</sub>(2)</h3>
+        <div class="formula">
+          L<sub>1</sub>(2) = (2 &minus; 1)(2 &minus; 6) / (4 &minus; 1)(4 &minus; 6) = (1)(&minus;4) / (3)(&minus;2) = &minus;4 / &minus;6 = 0.6667
+        </div>
+
+        <h3 class="section__subtitle">Paso 3: Calcular L<sub>2</sub>(2)</h3>
+        <div class="formula">
+          L<sub>2</sub>(2) = (2 &minus; 1)(2 &minus; 4) / (6 &minus; 1)(6 &minus; 4) = (1)(&minus;2) / (5)(2) = &minus;2 / 10 = &minus;0.2
+        </div>
+
+        <h3 class="section__subtitle">Paso 4: Sumar los productos (L<sub>i</sub> &middot; y<sub>i</sub>)</h3>
+        <div class="formula">
+          f<sub>2</sub>(2) = (0.5333 &times; 0) + (0.6667 &times; 1.386294) + (&minus;0.2 &times; 1.791760) = 0 + 0.9242 + (&minus;0.3584) = <strong>0.5659</strong>
+        </div>
+
+        <div class="info-box info-box--success">
+          <p class="info-box__text">
+            <strong>Resultado:</strong> El valor estimado es <strong>0.5659</strong>, una aproximación al valor
+            real de ln(2) &asymp; 0.6931. Al usar un polinomio de mayor grado o puntos más cercanos al objetivo,
+            la exactitud mejora significativamente.
+          </p>
+        </div>
+      </section>
+
+      <!-- Programación en MATLAB -->
+      <section class="section">
+        <h2 class="section__title">Programación del método usando MATLAB</h2>
+        <p class="section__text">
+          Utilizando la herramienta de MATLAB se puede automatizar el proceso de cálculo, creando un programa
+          ya sea en consola o como aplicación gráfica que permita el ingreso de los puntos conocidos y el
+          punto que necesitamos interpolar, y este realice los cálculos respectivos.
+        </p>
+
+        <h3 class="section__subtitle">Solución 1: Programa por consola</h3>
+        <p class="section__text">
+          Como primer paso el programa solicita la cantidad de puntos conocidos que el usuario necesite ingresar.
+        </p>
+        <img src="assets/images/cantidadPuntos.png.png" alt="Ingreso cantidad puntos para interpolación de Lagrange" class="mb-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <p class="section__text">
+          Una vez ingresada la cantidad, el programa va solicitando uno a uno dichos puntos en el formato de
+          coordenadas (x, y).
+        </p>
+        <img src="assets/images/ingresoPuntos.png.png" alt="Ingreso de puntos para interpolación de Lagrange" class="mb-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <p class="section__text">
+          Finalmente, el programa solicita el valor de <em>x</em> que necesitamos interpolar.
+        </p>
+        <img src="assets/images/ingresoXinterpolacionapp.png.png" alt="Ingreso valor x  para interpolación de Lagrange" class="mb-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+
+        <p class="section__text">
+          Una vez ingresada toda la información, el programa realiza todos los cálculos descritos anteriormente
+          y muestra el resultado en consola, adicionalmente se genera un gráfico que permite interpretar de
+          mejor manera los resultados obtenidos.
+        </p>
+        <img src="assets/images/resultadoInterpolacion.png.png" alt="Resultado interpolación de Lagrange generado por MATLAB" class="mb-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/graficaInterpolacionConsola.png.png.png" alt="Grafica interpolación de Lagrange generado por MATLAB" class="mb-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+
+        <div class="info-box">
+          <p class="info-box__text">
+            <strong>Código fuente:</strong> El código fuente de este programa puede obtenerse desde los archivos
+            del proyecto (<code>Lagrage.m</code>) en la sección de recursos.
+          </p>
+        </div>
+
+        <h3 class="section__subtitle">Solución 2: Aplicación gráfica (App Designer)</h3>
+        <p class="section__text">
+          En esta sección se describe la solución del mismo método utilizando una aplicación de MATLAB App
+          Designer. La aplicación tiene un diseño interactivo que realiza el mismo trabajo que el programa
+          anterior, solicitando primero la cantidad de puntos a ingresar. Una vez ingresados todos los valores,
+          se presiona el botón "Calcular" y la aplicación realiza todos los cálculos y muestra el gráfico
+          resultante y los valores.
+        </p>
+        <img src="assets/images/disenoApp.png.png" alt="Interfaz de la aplicación MATLAB App Designer para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/ingresoPunto1.png.png" alt="Ingreso punto 1  para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/ingresoPunto2.png.png" alt="Ingreso punto 2  para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/ingresoPunto3.png.png" alt="Ingreso punto 3  para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/ingresoXinterpolacionapp.png.png" alt="Ingreso punto x para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <img src="assets/images/graficaInterpolacionapp.png.png" alt="Grafica resultante para interpolación de Lagrange" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <div class="info-box mt-2">
+          <p class="info-box__text">
+            <strong>Código fuente:</strong> El código fuente de esta aplicación puede obtenerse desde los archivos
+            del proyecto (<code>LagrageApp.mlapp</code>) en la sección de recursos.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__heading">Métodos Numéricos</h4>
+          <p class="footer__text">
+            Proyecto Final &mdash; Serie de Taylor e Interpolación de Lagrange.
+            Universidad Mariano Gálvez de Guatemala.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Enlaces</h4>
+          <div class="footer__links">
+            <a href="index.html" class="footer__link">Inicio</a>
+            <a href="polinomio-de-interpolacion-lagrange.html" class="footer__link">Interpolación de Lagrange</a>
+            <a href="aproximacion-taylor.html" class="footer__link">Serie de Taylor</a>
+            <a href="conclusiones.html" class="footer__link">Conclusiones</a>
+            <a href="preguntas-frecuentes.html" class="footer__link">Preguntas frecuentes</a>
+            <a href="recursos-adicionales.html" class="footer__link">Recursos adicionales</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Redes sociales</h4>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">F</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">T</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">L</a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">Y</a>
+          </div>
+          <p class="footer__text" style="margin-top:0.75rem;">
+            <a href="#" class="footer__link">Política de privacidad</a> &middot;
+            <a href="#" class="footer__link">Contacto</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; <span id="current-year">2026</span> Métodos Numéricos. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

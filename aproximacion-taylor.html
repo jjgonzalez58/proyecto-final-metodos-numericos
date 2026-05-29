@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aproximación por Serie de Taylor - Explicación del método, procedimiento y aplicaciones en métodos numéricos.">
+  <title>Aproximación por Serie de Taylor | Métodos Numéricos</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======== HEADER ======== -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/Umg.png" alt="Logo Universidad Mariano Gálvez">
+        <div>
+          Métodos Numéricos
+          <span>Proyecto Final</span>
+        </div>
+      </a>
+      <button class="hamburger" aria-expanded="false" aria-label="Menú de navegación">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link">Inicio</a></li>
+          <li><a href="polinomio-de-interpolacion-lagrange.html" class="nav__link">Lagrange</a></li>
+          <li><a href="aproximacion-taylor.html" class="nav__link">Taylor</a></li>
+          <li><a href="conclusiones.html" class="nav__link">Conclusiones</a></li>
+          <li><a href="preguntas-frecuentes.html" class="nav__link">FAQ</a></li>
+          <li><a href="recursos-adicionales.html" class="nav__link">Recursos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======== PAGE BANNER ======== -->
+  <section class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">Aproximación por Serie de Taylor</h1>
+      <p class="page-banner__breadcrumb"><a href="index.html">Inicio</a> / Serie de Taylor</p>
+    </div>
+  </section>
+
+  <!-- ======== MAIN ======== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- Introducción -->
+      <section class="section">
+        <h2 class="section__title">¿Qué es la Serie de Taylor?</h2>
+        <p class="section__text">
+          La Serie de Taylor es una herramienta fundamental en el análisis numérico que permite aproximar
+          funciones matemáticas mediante la suma de términos calculados a partir de las derivadas de la
+          función en un punto específico. Es decir, permite representar una función como una serie infinita
+          de potencias, lo que facilita su evaluación y manipulación computacional.
+        </p>
+        <div class="info-box">
+          <p class="info-box__text">
+            <strong>Concepto clave:</strong> Una función suficientemente suave puede aproximarse localmente
+            alrededor de un punto <em>a</em> mediante un polinomio cuyos coeficientes dependen de las
+            derivadas de la función en ese punto.
+          </p>
+        </div>
+      </section>
+
+      <!-- Definición formal -->
+      <section class="section">
+        <h2 class="section__title">Definición formal</h2>
+        <p class="section__text">
+          Si una función <em>f(x)</em> es infinitamente diferenciable en un entorno de un punto <em>a</em>,
+          entonces su serie de Taylor alrededor de <em>a</em> es:
+        </p>
+        <div class="formula">
+          f(x) = &Sigma;<sub>n=0</sub><sup>&infin;</sup> f<sup>(n)</sup>(a) &middot; (x &minus; a)<sup>n</sup> / n!
+        </div>
+        <p class="section__text">
+          Donde <em>f<sup>(n)</sup>(a)</em> es la <em>n</em>-ésima derivada de <em>f</em> evaluada en
+          <em>a</em> y <em>n!</em> es el factorial de <em>n</em>.
+        </p>
+      </section>
+
+      <!-- Aplicaciones -->
+      <section class="section">
+        <h2 class="section__title">¿Para qué sirve y dónde se aplica?</h2>
+        <p class="section__text">
+          La Serie de Taylor tiene aplicaciones en prácticamente todas las áreas de la ingeniería y las
+          ciencias computacionales:
+        </p>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card__icon">&#8730;</div>
+            <h3 class="card__title">Cálculo numérico</h3>
+            <p class="card__text">
+              Evaluación de funciones trascendentales (seno, coseno, exponencial, logaritmo) en
+              computadoras y calculadoras.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#9881;</div>
+            <h3 class="card__title">Física e ingeniería</h3>
+            <p class="card__text">
+              Linealización de sistemas no lineales alrededor de puntos de operación para análisis
+              de estabilidad y control.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#128202;</div>
+            <h3 class="card__title">Análisis de errores</h3>
+            <p class="card__text">
+              Estimación y propagación de errores en métodos numéricos mediante la expansión en
+              serie de Taylor.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card__icon">&#128187;</div>
+            <h3 class="card__title">Machine Learning</h3>
+            <p class="card__text">
+              Aproximación de funciones de costo y optimización mediante gradientes y Hessianas
+              en algoritmos de aprendizaje.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Procedimiento -->
+      <section class="section">
+        <h2 class="section__title">Procedimiento paso a paso</h2>
+        <p class="section__text">
+          Para aproximar una función <em>f(x)</em> usando su serie de Taylor alrededor de un punto <em>a</em>:
+        </p>
+        <div class="steps">
+          <div class="step">
+            <span class="step__number">1</span>
+            <div class="step__content">
+              <h3 class="step__title">Elegir el punto de expansión <em>a</em></h3>
+              <p class="step__text">
+                Seleccionar un punto donde la función y sus derivadas sean conocidas o fáciles de calcular.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">2</span>
+            <div class="step__content">
+              <h3 class="step__title">Calcular las derivadas</h3>
+              <p class="step__text">
+                Calcular <em>f(a), f&prime;(a), f&prime;&prime;(a), &hellip;, f<sup>(n)</sup>(a)</em>
+                hasta el orden deseado.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">3</span>
+            <div class="step__content">
+              <h3 class="step__title">Construir el polinomio de Taylor</h3>
+              <p class="step__text">
+                Sustituir los valores en la fórmula de la serie, truncando en el término de orden <em>n</em>.
+              </p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step__number">4</span>
+            <div class="step__content">
+              <h3 class="step__title">Evaluar la aproximación</h3>
+              <p class="step__text">
+                Sustituir el valor de <em>x</em> deseado en el polinomio para obtener la aproximación.
+                Estimar el error usando el término residual.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ejemplo práctico -->
+      <section class="section">
+        <h2 class="section__title">Ejemplo práctico</h2>
+        <p class="section__text">
+          Aproximar la función <em>f(x) = e<sup>x</sup></em> alrededor de <em>a = 0</em> usando un
+          polinomio de Taylor de grado 4.
+        </p>
+        <p class="section__text">
+          Las derivadas de <em>e<sup>x</sup></em> son todas <em>e<sup>x</sup></em>, y evaluadas en
+          <em>x = 0</em> valen 1. Por lo tanto:
+        </p>
+        <div class="formula">
+          e<sup>x</sup> &asymp; 1 + x + x<sup>2</sup>/2! + x<sup>3</sup>/3! + x<sup>4</sup>/4!
+        </div>
+        <p class="section__text">
+          Para <em>x = 1</em> (aproximación de <em>e</em>):
+        </p>
+        <div class="formula">
+          e &asymp; 1 + 1 + 1/2 + 1/6 + 1/24 = 2.70833
+        </div>
+        <div class="info-box info-box--success">
+          <p class="info-box__text">
+            <strong>Resultado:</strong> El valor real de <em>e</em> es aproximadamente 2.71828, por lo que
+            el error es de aproximadamente 0.00995. Aumentando el número de términos se mejora la precisión.
+          </p>
+        </div>
+      </section>
+
+      <!-- Programación en MATLAB -->
+      <section class="section">
+        <h2 class="section__title">Programación del método usando MATLAB</h2>
+        <p class="section__text">
+          MATLAB permite implementar la Serie de Taylor de forma sencilla. Se puede crear un programa que
+          calcule la aproximación de Taylor para cualquier función ingresada por el usuario.
+        </p>
+        <div class="code-block">
+          <span class="comment">% Aproximación de Taylor para e^x alrededor de x=0</span><br>
+          <span class="keyword">syms</span> x<br>
+          f = exp(x);<br>
+          n = 4; <span class="comment">% grado del polinomio</span><br>
+          T = taylor(f, x, <span class="string">'Order'</span>, n+1);<br>
+          disp(T);<br>
+          <span class="comment">% Evaluar en x=1</span><br>
+          resultado = subs(T, x, 1);<br>
+          fprintf(<span class="string">'Aproximación de e^1 = %.5f\n'</span>, double(resultado));
+        </div>
+        <img src="assets/images/ejemplo-taylor.png" alt="Captura de pantalla del programa MATLAB para la Serie de Taylor" class="mt-2" style="border-radius:8px;border:1px solid #e0e4e8;">
+        <div class="info-box mt-2">
+          <p class="info-box__text">
+            <strong>Código fuente:</strong> El código fuente de esta aplicación puede obtenerse desde los archivos
+            del proyecto (<code>TaylorApp.mlapp</code>).
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__heading">Métodos Numéricos</h4>
+          <p class="footer__text">
+            Proyecto Final &mdash; Serie de Taylor e Interpolación de Lagrange.
+            Universidad Mariano Gálvez de Guatemala.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Enlaces</h4>
+          <div class="footer__links">
+            <a href="index.html" class="footer__link">Inicio</a>
+            <a href="polinomio-de-interpolacion-lagrange.html" class="footer__link">Interpolación de Lagrange</a>
+            <a href="aproximacion-taylor.html" class="footer__link">Serie de Taylor</a>
+            <a href="conclusiones.html" class="footer__link">Conclusiones</a>
+            <a href="preguntas-frecuentes.html" class="footer__link">Preguntas frecuentes</a>
+            <a href="recursos-adicionales.html" class="footer__link">Recursos adicionales</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Redes sociales</h4>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">F</a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">T</a>
+            <a href="#" class="footer__social-link" aria-label="LinkedIn">L</a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">Y</a>
+          </div>
+          <p class="footer__text" style="margin-top:0.75rem;">
+            <a href="#" class="footer__link">Política de privacidad</a> &middot;
+            <a href="#" class="footer__link">Contacto</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        &copy; <span id="current-year">2026</span> Métodos Numéricos. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
